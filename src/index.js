@@ -1,17 +1,17 @@
 import { param } from 'jquery';
-import { fetchWithTimeout } from './services.js';
+import { fetchWithTimeout } from './services';
 
-const movie = require('./src/data/movies.json');
+const movies = require('./src/data/movies.json');
 
 export function fetchMovies() {
     const resolveFunction = () => movies;
     return fetchWithTimeout(1000).then(resolveFunction);
 };
 
+moviePromise.then(results => {
+    console.log(results);
+});
+
 const resolveCallback = (param) => {
-    console.log('success')
+    console.log(param)
 }
-
-const moviePromise = fetchMovies();
-
-moviePromise.then(resolveCallback);
