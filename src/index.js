@@ -28,4 +28,4 @@ getBooksAndMoviesPromise.then(results => {
     console.log('getBooksOrMoviesPromise', results);
 });
 
-getBooksOrMovies();
+getBooksOrMoviesPromise();
