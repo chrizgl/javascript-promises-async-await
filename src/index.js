@@ -50,8 +50,12 @@ async function getBooksAndMoviesAsync() {
 }
 
 async function getBooksOrMoviesAsync() {
-  const values = await Promise.race([asyncFetchBookss(), asyncFetchMovies()]);
-  return values;
+  try {
+    const values = await Promise.race([asyncFetchBooks(), asyncFetchMovies()]);
+    return values;
+  } catch (error) {
+    console.error("Error waiting for the promise race", error);
+  }
 }
 
 getBooksAndMoviesAsync()
@@ -75,11 +79,11 @@ getBooksOrMoviesAsync()
     console.error("Error in getBooksOrMoviesAsync execution", error)
   );
 
-  const timer1 = setTimeout(() => {
-    console.log('timer 1 has finished');
-  }, 3000);
+const timer1 = setTimeout(() => {
+  console.log("timer 1 has finished");
+}, 3000);
 
-  const timer2 = setTimeout(() => {
-    console.log('timer 2 has finished');
-    clearTimeout(timer1);
-  }, 2000);
+const timer2 = setTimeout(() => {
+  console.log("timer 2 has finished");
+  clearTimeout(timer1);
+}, 2000);
